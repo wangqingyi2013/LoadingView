@@ -3,7 +3,8 @@ android loading view;
 带有成功失败状态
 
 
-![video](https://github.com/githubwing/LoadingView/raw/master/perview.mp4)
+![image](https://github.com/githubwing/LoadingView/raw/master/preview.gif)
+
 ###How To Use
 
 

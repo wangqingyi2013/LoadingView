@@ -7,17 +7,18 @@ android loading view;
 ###How To Use
 
 
-xml
-<p>add a Loading into your XML.：</p>
+>int layout
+<p>add a WLoadingView into your XML.：</p>
 
 <pre>
 <code>
 
-&ltcom.wingsofts.loadingview.WLoadingView
+&lt;com.wingsofts.loadingview.WLoadingView
         android:id="@+id/myloadingView"
         android:layout_width="150dp"
         android:layout_height="150dp"
         app:lineColor="@color/colorAccent"
-        app:lineWidth="6" /&mt
+        app:lineWidth="6" /&gt;
 </code></pre>
+
 感谢 http://blog.csdn.net/wingichoy/article/details/50482271

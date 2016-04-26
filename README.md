@@ -3,11 +3,15 @@ android loading view;
 带有成功失败状态
 
 
-![image](https://github.com/githubwing/LoadingView/raw/master/perview.mp4)
+![video](https://github.com/githubwing/LoadingView/raw/master/perview.mp4)
 ###How To Use
-add a Loading into your XML.
+
 
 xml
+<p>add a Loading into your XML.：</p>
+
+<pre>
+<code>
 
 <com.wingsofts.loadingview.WLoadingView
         android:id="@+id/myloadingView"
@@ -15,5 +19,5 @@ xml
         android:layout_height="150dp"
         app:lineColor="@color/colorAccent"
         app:lineWidth="6" />
-
+</code></pre>
 感谢 http://blog.csdn.net/wingichoy/article/details/50482271

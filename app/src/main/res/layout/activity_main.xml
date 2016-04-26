@@ -11,14 +11,14 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.wingsofts.loadingview.MainActivity">
+    tools:context="com.wsofts.loadingview.MainActivity">
 
     <!--<com.wingsofts.loadingview.LoadingView-->
     <!--android:id="@+id/loadingView"-->
     <!--android:layout_width="100dp"-->
     <!--android:layout_height="100dp"-->
     <!--android:layout_centerInParent="true" />-->
-    <com.wingsofts.loadingview.WLoadingView
+    <com.wsofts.loadingview.WLoadingView
         android:id="@+id/myloadingView"
         android:layout_width="150dp"
         android:layout_height="150dp"
@@ -43,7 +43,7 @@
         android:onClick="reset"
         android:text="reset" />
 
-    <com.wingsofts.loadingview.LoadingView
+    <com.wsofts.loadingview.LoadingView
         android:id="@+id/loadingView"
         android:layout_width="150dp"
         android:layout_height="150dp" />

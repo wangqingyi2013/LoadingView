@@ -1,4 +1,4 @@
-package com.wingsofts.loadingview;
+package com.wsofts.loadingview;
 
 import android.content.Context;
 import android.content.res.TypedArray;

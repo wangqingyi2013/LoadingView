@@ -14,7 +14,7 @@ android loading view;
 <pre>
 <code>
 
-&lt;com.wingsofts.loadingview.WLoadingView
+&lt;com.wsofts.loadingview.WLoadingView
         android:id="@+id/myloadingView"
         android:layout_width="150dp"
         android:layout_height="150dp"

@@ -20,6 +20,8 @@ public class LoadingView extends View {
     //横线变对勾的百分比
     private int mLinePercent;
 
+    private boolean isSuccess = false;
+
     public void start() {
         if (isDrawing == false) {
             canStartDraw = true;
@@ -31,6 +33,25 @@ public class LoadingView extends View {
             mLinePercent = 0;
             invalidate();
         }
+    }
+
+    private void reset() {
+        isDrawing = false;
+        canStartDraw = true;
+        isRiseDone = false;
+        mRisePercent = 0;
+        mLineShrinkPercent = 0;
+        mCirclePercent = 0;
+        mPathPercent = 0;
+        mLinePercent = 0;
+        isPathToLine = false;
+        invalidate();
+    }
+
+    public void success() {
+        isRiseDone = true;
+        isPathToLine = true;
+        isSuccess = true;
     }
 
     //标记是否可以开始动画
@@ -86,6 +107,7 @@ public class LoadingView extends View {
         } else {
             mHeight = 200;
         }
+        System.out.println(mHeight);
         setMeasuredDimension(mWidth, mHeight);
     }
 
@@ -129,7 +151,7 @@ public class LoadingView extends View {
                     mPathPercent += 5;
 
                     //在变成直线的过程中这个点一直存在
-                    canvas.drawCircle(mWidth / 2, mHeight / 2,2.5f, p);
+                    canvas.drawCircle(mWidth / 2, mHeight / 2, 2.5f, p);
                 } else {
                     //绘制把点上弹的直线
 
@@ -139,42 +161,62 @@ public class LoadingView extends View {
                         //在点移动到圆弧上的时候 线是一直存在的
                         canvas.drawLine(mWidth / 4, mHeight * 0.5f, mWidth * 0.75f, mHeight * 0.5f, p);
 
-                        canvas.drawCircle(mWidth / 2, mHeight / 2 - mHeight / 2 * mRisePercent / 100 + 5,2.5f, p);
+                        canvas.drawCircle(mWidth / 2, mHeight / 2 - mHeight / 2 * mRisePercent / 100 + 5, 2.5f, p);
 
                         mRisePercent += 5;
                     } else {
                         //上升的点最终的位置
                         canvas.drawPoint(mWidth / 2, 5, p);
                         isRiseDone = true;
-
-                        //改变对勾形状
-                        if (mLinePercent < 100) {
-
-                            path.moveTo(mWidth / 4, mHeight * 0.5f);
-                            path.lineTo(mWidth / 2, mHeight * 0.5f+ mLinePercent/100f * mHeight * 0.25f);
-                            path.lineTo(mWidth * 0.75f, mHeight * 0.5f - mLinePercent / 100f * mHeight * 0.3f);
-                            canvas.drawPath(path, p);
-                            mLinePercent += 5;
-
-                            //动态绘制圆形百分比
-                            if (mCirclePercent < 100) {
-                                canvas.drawArc(rectF, 270, -mCirclePercent / 100.0f * 360, false, p);
-                                mCirclePercent += 5;
-                            }
-
+                        //动态绘制圆形百分比
+                        if (mCirclePercent < 100) {
+                            canvas.drawArc(rectF, 270, -mCirclePercent / 100.0f * 360, false, p);
+                            mCirclePercent += 5;
                         } else {
-                            //绘制最终的path
-                            path.moveTo(mWidth / 4, mHeight * 0.5f);
-                            path.lineTo(mWidth / 2, mHeight * 0.75f);
-                            path.lineTo(mWidth * 0.75f, mHeight * 0.3f);
-                            canvas.drawPath(path, p);
-//                            绘制最终的圆
-                            canvas.drawArc(rectF, 270, -360, false, p);
-
-                            isDrawing = false;
-
+                            if (!isSuccess) {
+                                reset();
+                                //绘制静态箭头
+                                p.setColor(Color.WHITE);
+                                canvas.drawLine(mWidth / 2, mHeight / 4, mWidth / 2, mHeight * 0.75f, p);
+//            Path path = new Path();
+                                path.moveTo(mWidth / 4, mHeight * 0.5f);
+                                path.lineTo(mWidth / 2, mHeight * 0.75f);
+                                path.lineTo(mWidth * 0.75f, mHeight * 0.5f);
+                                canvas.drawPath(path, p);
+                            }
                         }
+                        if (isSuccess) {
+                            //改变对勾形状
+                            if (mLinePercent < 100) {
+
+                                path.moveTo(mWidth / 4, mHeight * 0.5f);
+                                path.lineTo(mWidth / 2 - 10, mHeight * 0.5f + mLinePercent / 100f * mHeight * 0.15f);
+                                path.lineTo(mWidth * 0.75f, mHeight * 0.5f - mLinePercent / 100f * mHeight * 0.2f);
+                                canvas.drawPath(path, p);
+                                mLinePercent += 5;
+
+                                //动态绘制圆形百分比
+                                if (mCirclePercent < 100) {
+                                    canvas.drawArc(rectF, 270, -mCirclePercent / 100.0f * 360, false, p);
+                                    mCirclePercent += 5;
+                                }
+                                System.out.println(mHeight * 0.5f + mLinePercent / 100f * mHeight * 0.15f);
+                                System.out.println(mHeight * 0.65f);
+                            } else {
+
+                                //绘制最终的path
+                                path.moveTo(mWidth / 4, mHeight * 0.5f);
+                                path.lineTo(mWidth / 2 - 10, mHeight * 0.65f);
+                                path.lineTo(mWidth * 0.75f, mHeight * 0.3f);
+                                canvas.drawPath(path, p);
+//                            绘制最终的圆
+                                canvas.drawArc(rectF, 270, -360, false, p);
+
+                                isDrawing = false;
+
+                            }
 //                        }
+                        }
                     }
 
 

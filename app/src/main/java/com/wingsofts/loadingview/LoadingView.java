@@ -13,67 +13,29 @@ import android.view.View;
  * Created by Administrator on 2016/1/8.
  */
 public class LoadingView extends View {
+    Paint p = new Paint();
+    Path path = new Path();
+    RectF rectF;
     private int mWidth;
     private int mHeight;
     private Context mContext;
-
     //横线变对勾的百分比
     private int mLinePercent;
 
     private boolean isSuccess = false;
-
-    public void start() {
-        if (isDrawing == false) {
-            canStartDraw = true;
-            isRiseDone = false;
-            mRisePercent = 0;
-            mLineShrinkPercent = 0;
-            mCirclePercent = 0;
-            mPathPercent = 0;
-            mLinePercent = 0;
-            invalidate();
-        }
-    }
-
-    private void reset() {
-        isDrawing = false;
-        canStartDraw = true;
-        isRiseDone = false;
-        mRisePercent = 0;
-        mLineShrinkPercent = 0;
-        mCirclePercent = 0;
-        mPathPercent = 0;
-        mLinePercent = 0;
-        isPathToLine = false;
-        invalidate();
-    }
-
-    public void success() {
-        isRiseDone = true;
-        isPathToLine = true;
-        isSuccess = true;
-    }
-
     //标记是否可以开始动画
     private boolean canStartDraw = true;
-
     private int mRisePercent = 0;
-
     //竖线缩短的百分比
     private int mLineShrinkPercent = 0;
-
     //圆形进度百分比
     private int mCirclePercent = 0;
-
     //标记上升是否完成
     private boolean isRiseDone = false;
-
     //对勾变形的百分比
     private int mPathPercent = 0;
-
     //判断是不是正在draw
     private boolean isDrawing = false;
-
     private boolean isPathToLine = false;
 
     public LoadingView(Context context) {
@@ -87,6 +49,26 @@ public class LoadingView extends View {
     public LoadingView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
+    }
+
+    public void reset() {
+        isDrawing = false;
+        canStartDraw = true;
+        isRiseDone = false;
+        mRisePercent = 0;
+        mLineShrinkPercent = 0;
+        mCirclePercent = 0;
+        mPathPercent = 0;
+        mLinePercent = 0;
+        isPathToLine = false;
+        isSuccess = false;
+        invalidate();
+    }
+
+    public void success() {
+        isRiseDone = true;
+        isPathToLine = true;
+        isSuccess = true;
     }
 
     @Override
@@ -107,22 +89,22 @@ public class LoadingView extends View {
         } else {
             mHeight = 200;
         }
-        System.out.println(mHeight);
+
         setMeasuredDimension(mWidth, mHeight);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Paint p = new Paint();
 
-        Path path = new Path();
+
+        path.reset();
         p.setColor(Color.parseColor("#2EA4F2"));
         p.setStyle(Paint.Style.STROKE);
         p.setStrokeWidth(8);
         p.setAntiAlias(true);
 
         //百分比弧的矩形
-        RectF rectF = new RectF(5, 5, mWidth - 5, mHeight - 5);
+        rectF = new RectF(5, 5, mWidth - 5, mHeight - 5);
 
         //绘制圆
         canvas.drawCircle(mWidth / 2, mHeight / 2, mWidth / 2 - 5, p);

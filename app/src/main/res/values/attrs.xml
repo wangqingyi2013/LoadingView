@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="WLoadingView">
+        <attr name="lineWidth" format="integer|reference" />
+        <attr name="lineColor" format="reference|color" />
+        <attr name="lineBgColor" format="reference|color" />
+    </declare-styleable>
+
+</resources>

@@ -3,7 +3,7 @@ android loading view;
 带有成功失败状态
 
 
-![image](https://github.com/githubwing/LoadingView/raw/master/perview.gif)
+![image](https://github.com/githubwing/LoadingView/raw/master/perview.mp4)
 ###How To Use
 add a Loading into your XML.
 

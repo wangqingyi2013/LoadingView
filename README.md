@@ -1,6 +1,6 @@
-# LoadingView
-android loaing view;
-有成功失败状态
+# WLoadingView
+android loading view;
+带有成功失败状态
 
 
 ![image](https://github.com/githubwing/LoadingView/raw/master/perview.gif)

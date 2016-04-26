@@ -7,6 +7,8 @@ android loaing view;
 ###How To Use
 add a Loading into your XML.
 
+xml
+
 <com.wingsofts.loadingview.WLoadingView
         android:id="@+id/myloadingView"
         android:layout_width="150dp"
